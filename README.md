@@ -9,3 +9,9 @@
 🚀 Don't miss out on this exciting exploration of robotics and navigation technology – hit play and join us on the journey through the ROS1 Navigation Stack with the MIR warehouse robot! 🌐🤖
 
 </div>
+
+Here the output of the Navigation in Youtube:
+
+[![MIR_NAVIGATION](https://img.youtube.com/vi/LBe2FYRVhsY/0.jpg)](https://www.youtube.com/watch?v=LBe2FYRVhsY)
+
+
