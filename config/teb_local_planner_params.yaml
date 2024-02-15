@@ -87,7 +87,7 @@ TebLocalPlannerROS:
   selection_viapoint_cost_scale: 1.0       # Extra scaling of via-point cost terms just for selecting the 'best' candidate. (new_viapt_cost: viapt_cost*factor)
   selection_alternative_time_cost: false   # If true, time cost is replaced by the total transition time.
   roadmap_graph_no_samples: 15             # Specify the number of samples generated for creating the roadmap graph, if simple_exploration is turend off
-  roadmap_graph_area_width: 5.0            # Specify the width of the area in which sampled will be generated between start and goal [m] (the height equals the start-goal distance)
+  roadmap_graph_area_width: 5.0            # Specify local_plannerthe width of the area in which sampled will be generated between start and goal [m] (the height equals the start-goal distance)
   roadmap_graph_area_length_scale: 1.0     # The length of the rectangular region is determined by the distance between start and goal. This parameter further scales the distance such that the geometric center remains equal!)
   h_signature_prescaler: 1.0               # Scale number of obstacle value in order to allow huge number of obstacles. Do not choose it extremly low, otherwise obstacles cannot be distinguished from each other (0.2<H<=1)
   h_signature_threshold: 0.1               # Two h-signuteres are assumed to be equal, if both the difference of real parts and complex parts are below the specified threshold

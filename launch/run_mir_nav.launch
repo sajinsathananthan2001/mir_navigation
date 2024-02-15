@@ -1,14 +1,25 @@
 <?xml version="1.0"?>
 <launch>
 
-    <arg name="map_file" default="$(find my_mir_nav)/maps/maze.yaml" doc="Path to a map .yaml file (required)." />
+    <!-- Arguments -->
+    <arg name="open_rviz" default="true"/>
+    <arg name="map_file" default="$(find my_mir_nav)/maps/map_25.yaml" doc="Path to a map .yaml file (required)." />
 
+    <!-- Map server -->
     <node name="static_map_server" pkg="map_server" type="map_server" args="$(arg map_file)" ns="/" output="screen">
         <param name="frame_id" type="string" value="map"/>
     </node>
 
+    <!-- AMCL -->
     <include file="$(find my_mir_nav)/launch/amcl.launch" />
 
+    <!-- move_base -->
     <include file="$(find my_mir_nav)/launch/move_base.launch"/>
+
+    <!-- rviz -->
+    <group if="$(arg open_rviz)"> 
+    <node pkg="rviz" type="rviz" name="rviz" required="true"
+          args="-d $(find my_mir_nav)/rviz/rvis.rviz"/>
+    </group>
 
 </launch>

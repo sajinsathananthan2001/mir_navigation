@@ -1,24 +1,29 @@
 <?xml version="1.0"?>
 <launch>
 
+<arg name="local_planner" default="dwb"/>
+
+
 <!-- <arg name="local_planner" default="dwb" doc="Local planner can be either dwa, base, teb or pose"/> -->
 
 
 <node pkg="move_base" type="move_base" respawn="false" name="move_base_node" output="screen">
-    <param name="base_global_planner" value="SBPLLatticePlanner"/>
-    <param name="SBPLLatticePlanner/primitive_filename" value="$(find my_mir_nav)/mprim/unicycle_highcost_5cm.mprim"/>
 
+    <!-- global planner -->
+    <param name="SBPLLatticePlanner/primitive_filename" value="$(find my_mir_nav)/mprim/pr2.mprim"/>
+    <rosparam file="$(find my_mir_nav)/config/sbpl_global_params.yaml" command="load"/>
+    <!-- <param name="base_global_planner" value="SBPLLatticePlanner"/> -->
+
+
+    <!-- local planner -->
+    <rosparam file="$(find my_mir_nav)/config/$(arg local_planner)_local_planner.yaml" command="load" />
     <!-- <param name="base_local_planner" value="$(arg local_planner)"/> -->
-    <!-- <rosparam file="$(find mir_navigation)/config/$(arg local_planner)_local_planner_params.yaml" command="load" /> -->
 
     <rosparam file="$(find my_mir_nav)/config/costmap_common_params.yaml" command="load" ns="global_costmap"/>
     <rosparam file="$(find my_mir_nav)/config/costmap_common_params.yaml" command="load" ns="local_costmap"/>
-
     <rosparam file="$(find my_mir_nav)/config/global_costmap_params.yaml" command="load"/>
-    <rosparam file="$(find my_mir_nav)/config/sbpl_global_params.yaml" command="load"/>
-
     <rosparam file="$(find my_mir_nav)/config/local_costmap_params_close.yaml" command="load"/>
-    <rosparam file="$(find my_mir_nav)/config/base_local_planner_params_close.yaml" command="load"/>
+
 
     <remap from="map" to="/map" />
     <remap from="marker" to="move_base_node/DWBLocalPlanner/markers" />
